@@ -1,4 +1,4 @@
-from . import Base
+from . import Base, verify_phone_number
 from sqlalchemy import Column, Integer, String, LargeBinary, DateTime, Boolean
 from datetime import datetime, timezone
 from email_validator import validate_email, EmailNotValidError
@@ -21,14 +21,20 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     def __init__(self, **kwargs):
+        # Validações antes de criar o objeto
+        if 'email' in kwargs and not User.email_validation(kwargs['email']):
+            raise ValueError(f'Invalid email address: {kwargs["email"]}')
+        
+        if 'phone' in kwargs and not verify_phone_number(kwargs['phone']):
+            raise ValueError(f'Invalid phone number: {kwargs["phone"]}')
+        
+        # Chama o construtor da classe base (Base) após as validações
         super().__init__(**kwargs)
-        if not self.email_validation():
-            raise ValueError(f'Invalid email address: {self.email}')
 
-    def email_validation(self):
+    @staticmethod
+    def email_validation(email):
         try:
-            # Valida o email usando a biblioteca email-validator
-            validate_email(self.email)
+            validate_email(email)
             return True
         except EmailNotValidError as e:
             print(f"Erro ao validar email: {e}")  # Log do erro para depuração
