@@ -1,5 +1,5 @@
 from tkinter import *
-from .login import LoginScreen
+import os
 
 class MainWindow():
     def __init__(self):
@@ -21,3 +21,10 @@ class MainWindow():
     def run(self):
         self.root.mainloop()
     
+def find_picture(path):
+    absolute_path = os.path.join(os.path.dirname(__file__), f'{path}')
+    if not os.path.exists(absolute_path):
+            raise FileNotFoundError(f"Image not found: {absolute_path}")
+    return absolute_path
+    
+from .login import LoginScreen
