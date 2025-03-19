@@ -28,4 +28,3 @@ class Measure(Base):
         if 'abbreviation' not in kwargs:
             self.abbreviation = kwargs['name'][:3]
         super().__init__(**kwargs)
-    

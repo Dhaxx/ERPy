@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import os
 
 PRIMARY_COLOR = '#57a1f8'
@@ -11,12 +12,10 @@ class MainWindow():
         self.root.configure(bg='#fff')
         self.root.resizable(False,False)
         self.login_screen = LoginScreen(self.root, self.show_main_window)
-        self.login_screen.show()
 
     def show_main_window(self):
-        # Esconde a tela de login e mostra a home
-        self.login_screen.hide()
-        from . import HomeScreen
+        self.login_screen.hide() # Esconde a tela de login
+        from .home import HomeScreen
         self.main_window = HomeScreen(self.root)
         self.main_window.show()
 

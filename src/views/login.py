@@ -1,10 +1,12 @@
 from . import *
+from ..controller.authentication import AuthController
 
 class LoginScreen:
     def __init__(self, root, on_success_callback):
         self.root = root
         self.on_success_callback = on_success_callback
         self.root.title('ERPy | Login')
+        self.controller = AuthController(self, self.on_success_callback)
                 
         img_path = find_picture('../static/imgs/login-img.png')
         img = PhotoImage(file=img_path)
@@ -55,7 +57,7 @@ class LoginScreen:
         )
         self.visibility_password_btn.place(x=260, y=200)
 
-        Button(self.Frame, width=39, pady=7, text='Login', bg=PRIMARY_COLOR, fg='white', border=0, cursor='hand2').place(x=35, y=274)
+        Button(self.Frame, width=39, pady=7, text='Login', bg=PRIMARY_COLOR, fg='white', border=0, cursor='hand2', command=self.on_login).place(x=35, y=274)
         label = Label(self.Frame, text='Não possui acesso?', fg='black', bg='white', font=('Microsoft YaHei UI Light', 7))
         label.place(x=90, y=310)
 
@@ -104,5 +106,14 @@ class LoginScreen:
             self.username.delete(0, 'end')
             self.username.insert(0, validated_text)
 
-    def show(self):
-        pass
+    def on_login(self):
+        username = self.username.get()
+        password = self.password.get()
+
+        self.controller.login(username, password)
+
+    def show_error(self, message):
+        messagebox.showerror('Erro', message)
+
+    def hide(self):
+        self.root.withdraw()

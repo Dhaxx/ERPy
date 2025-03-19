@@ -10,11 +10,11 @@ class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     login = Column(String(10), unique=True, nullable=False, index=True)
-    password_hash = Column(LargeBinary, nullable=False)
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     email = Column(String, nullable=False, index=True)
-    phone = Column(String, nullable=False)
+    phone = Column(String)
+    password_hash = Column(String, nullable=False)
     created_at = Column(DateTime, default=current_time)
     updated_at = Column(DateTime, default=current_time, onupdate=current_time)
     is_admin = Column(Boolean, default=False)

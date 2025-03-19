@@ -1,4 +1,5 @@
 from src.views import *
+from src.models import *
 
 def main():
     app = MainWindow()

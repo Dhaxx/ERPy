@@ -24,3 +24,31 @@ def verify_phone_number(number):
 from .users import User
 from .products import Measure, Product
 from .clients import Client
+
+Base.metadata.create_all(engine)
+
+def create_default_user():
+    from hashlib import sha256
+    # Dados do novo usuário
+    username = "recrutador"
+    password = "abc123"
+    password_hash = sha256(password.encode()).hexdigest()  # Gera hash da senha
+
+    # Cria usuário padrão
+    new_user = User(
+        login=username,
+        password_hash=password_hash,
+        first_name="Fulano",
+        last_name="Silva",
+        email='fulanoSilva@gmail.com'
+    )
+
+    # Adicionando ao banco e salvando
+    try:
+        session.add(new_user)
+        session.commit()
+        print("Usuário inserido com sucesso!")
+    except Exception as e:
+        e
+        session.rollback()
+        pass
