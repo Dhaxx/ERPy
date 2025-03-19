@@ -1,6 +1,8 @@
 from tkinter import *
 import os
 
+PRIMARY_COLOR = '#57a1f8'
+
 class MainWindow():
     def __init__(self):
         self.root = Tk()
