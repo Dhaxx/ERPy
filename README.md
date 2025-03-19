@@ -17,7 +17,7 @@ git clone https://github.com/seu-usuario/erpy.git
 cd erpy
 ```
 
-### 2️⃣ **Crie e ative um ambiente virtual**
+## 2️⃣ **Crie e ative um ambiente virtual**
 ```
 python -m venv venv
 # Ativar no Windows
@@ -26,12 +26,12 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-###3️⃣ **Instale as dependências***
+## 3️⃣ **Instale as dependências***
 ```
 pip install -r requirements.txt
 ```
 
-###4️⃣ **Execute o programa**
+## 4️⃣ **Execute o programa**
 ```
 python src/main.py
 ```
