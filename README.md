@@ -15,3 +15,23 @@ ERPy é um sistema ERP simples desenvolvido para fins de estudo, utilizando Pyth
 ```bash
 git clone https://github.com/seu-usuario/erpy.git
 cd erpy
+```
+
+### 2️⃣ **Crie e ative um ambiente virtual**
+```
+python -m venv venv
+# Ativar no Windows
+venv\Scripts\activate
+# Ativar no Linux/macOS
+source venv/bin/activate
+```
+
+###3️⃣ **Instale as dependências***
+```
+pip install -r requirements.txt
+```
+
+###4️⃣ **Execute o programa**
+```
+python src/main.py
+```
