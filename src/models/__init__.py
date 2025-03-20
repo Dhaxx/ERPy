@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy import Column, Integer, String, DateTime, Boolean, Text, ForeignKey
 import re
 
 # Cria e configura a conexão com meu db
@@ -9,7 +10,7 @@ engine = create_engine('sqlite:///pyERP.db', echo=False)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# Cria a clase base através da fábrica de classe
+# Cria a classe base através da fábrica de classe
 Base = declarative_base()
 
 # Validador de número de celular
@@ -25,7 +26,7 @@ from .users import User
 from .products import Measure, Product
 from .clients import Client
 
-Base.metadata.create_all(engine)
+Base.metadata.create_all(engine) # Cria as tabelas
 
 def create_default_user():
     from hashlib import sha256

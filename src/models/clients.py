@@ -1,5 +1,4 @@
-from . import Base, verify_phone_number
-from sqlalchemy import Column, Integer, String
+from . import *
 
 class Client(Base):
     __tablename__ = 'clients'

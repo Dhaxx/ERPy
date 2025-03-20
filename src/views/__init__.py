@@ -2,9 +2,10 @@ from tkinter import *
 from tkinter import messagebox
 import os
 
-PRIMARY_COLOR = '#57a1f8'
+primary_color = '#57a1f8'
 
-class MainWindow():
+# Janela principal
+class MainWindow(): 
     def __init__(self):
         self.root = Tk()
         self.root.title('PyERP')
@@ -16,6 +17,7 @@ class MainWindow():
     def show_main_window(self):
         self.login_screen.hide() # Esconde a tela de login
         from .home import HomeScreen
+        self.root.resizable(True,True)
         self.main_window = HomeScreen(self.root)
         self.main_window.show()
 

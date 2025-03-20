@@ -1,5 +1,4 @@
-from . import Base, verify_phone_number
-from sqlalchemy import Column, Integer, String, LargeBinary, DateTime, Boolean
+from . import *
 from datetime import datetime, timezone
 from email_validator import validate_email, EmailNotValidError
 
