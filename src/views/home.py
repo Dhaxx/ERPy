@@ -54,8 +54,8 @@ class SideMenu(Frame):
 
 class SideMenuButtons(Button):
     def __init__(self, master, **kwargs):
-        command = kwargs['action'] if 'action' in kwargs else None
-        super().__init__(master, text=kwargs['text'], padx=8, pady=5, border=0, width=20, bg=primary_color, fg='white', cursor='hand2',command=command)
+        self.command = kwargs['action'] if 'action' in kwargs else None
+        super().__init__(master, text=kwargs['text'], padx=8, pady=5, border=0, width=20, bg=primary_color, fg='white', cursor='hand2',command=self.command)
         self.pack(side='top', pady=10)
 
 class TransactionScreen(Frame):
@@ -64,5 +64,21 @@ class TransactionScreen(Frame):
         self.master = master
         self.pack(fill='both', expand=True)
 
-        self.insert_btn = Button(self, text='Inserir')
-        self.insert_btn.pack(side='top')
+        self.actions_hud = ActionHud(self)
+        # self.insert_btn = Button(self, text='Inserir')
+        # self.insert_btn.pack(side='top')
+
+class ActionHud(Frame):
+    def __init__(self, master):
+        Frame(master, height=70).pack(side='top')
+        super().__init__(master, height=80, pady=30, bg='green')
+        self.master = master
+        self.pack(side='top', fill='x')
+
+        self.insert_btn = ActionButton(self, text='Inserir')
+
+class ActionButton(Button):
+    def __init__(self, master, **kwargs):
+        self.command = kwargs['action'] if 'action' in kwargs else None
+        super().__init__(master, text=kwargs['text'], padx=10, width=10, cursor='hand2', command=self.command)
+        self.pack(side='left', padx=(20,0))
